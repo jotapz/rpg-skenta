@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://by50xicntsxlu"]
 
 [ext_resource type="PackedScene" uid="uid://bxurl7vf2h8gp" path="res://Objects/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://cft7moaftt807" path="res://Model/tavern.glb" id="2_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://c4yq8by7tvyw8" path="res://Model/CliffProps/cliffProps1.glb" id="3_8j60k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2hb0"]
 size = Vector3(50, 1, 50)
@@ -28,4 +30,12 @@ mesh = SubResource("QuadMesh_ntxrx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96358204, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1238435702]
-transform = Transform3D(0.18645829, 0.6647145, 0.7234556, -0.26997617, -0.67335474, 0.6882633, 0.94464076, -0.32364818, 0.053904504, 24.608036, 11.251962, -0.17863941)
+transform = Transform3D(-0.09359564, 0.99472016, 0.04209177, -0.15206149, -0.056063604, 0.98677975, 0.98392946, 0.08595774, 0.15650594, 0.13903809, 12.129217, 0.38961744)
+
+[node name="Cliff" type="StaticBody3D" parent="." unique_id=854255031]
+
+[node name="tavern" parent="." unique_id=2139391647 instance=ExtResource("2_5a7ea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2329807, 0.008583084, -14.082632)
+
+[node name="cliffProps1" parent="." unique_id=1982138935 instance=ExtResource("3_8j60k")]
+transform = Transform3D(0.9998996, 0.01358176, -0.0040435293, -0.01348879, 0.9996627, 0.02219521, 0.0043436023, -0.022138441, 0.9997455, 24.13273, 0.1686225, 24.357492)
