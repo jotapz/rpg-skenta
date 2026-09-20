@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const SPRINT_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
 
@@ -37,11 +38,12 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var current_speed = SPRINT_SPEED if Input.is_key_pressed(KEY_SHIFT) else SPEED
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
