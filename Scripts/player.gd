@@ -5,13 +5,20 @@ const SPEED = 5.0
 const SPRINT_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
+var gold = 0
+var hp = 50
+var maxHp = 50
+
 var onCooldown = false
 var sensivity = 0.003
+@onready var goldLabel = $HUD/GoldLabel
+@onready var hpBar = $HUD/HpBar
 @onready var camera = $FirstPerson
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
 
 func _ready():
+	hpBar.max_value = 50
 	$FirstPerson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -27,6 +34,10 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * sensivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
 
+func update_HUD():
+	hpBar.value = hp
+	goldLabel.text = str(gold)
+
 func _switch_view():
 	if Input.is_action_just_pressed("switch"):
 		if camera == $FirstPerson:
@@ -38,6 +49,7 @@ func _switch_view():
 
 
 func _process(delta):
+	update_HUD()
 	attack()
 	_switch_view()
 	if Input.is_action_just_pressed("escape"):

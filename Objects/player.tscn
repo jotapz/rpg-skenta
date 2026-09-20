@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://iv7nnj4hj7bj" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="PackedScene" uid="uid://bxvtprmo7d811" path="res://Model/Sword.glb" id="2_3y5cq"]
+[ext_resource type="Texture2D" uid="uid://dsa7vlv8b5y0e" path="res://Sprites/healthbarbacunder.png" id="3_0ad8t"]
+[ext_resource type="Texture2D" uid="uid://ck7uxagedl3eo" path="res://Sprites/healthbarover.png" id="4_x20fu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s2hb0"]
 radius = 0.4
@@ -100,5 +102,23 @@ fov = 118.9
 libraries/ = SubResource("AnimationLibrary_0ad8t")
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=967302491]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=708997651]
+
+[node name="HpBar" type="TextureProgressBar" parent="HUD" unique_id=815278606]
+offset_left = 46.0
+offset_top = 43.0
+offset_right = 285.0
+offset_bottom = 83.0
+texture_under = ExtResource("3_0ad8t")
+texture_progress = ExtResource("4_x20fu")
+
+[node name="GoldLabel" type="Label" parent="HUD" unique_id=806816347]
+offset_left = 1082.0
+offset_top = 596.0
+offset_right = 1122.0
+offset_bottom = 630.0
+theme_type_variation = &"HeaderMedium"
+text = "0"
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
