@@ -19,5 +19,11 @@ mesh = SubResource("CapsuleMesh_s2hb0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=950845593]
 shape = SubResource("CapsuleShape3D_ntxrx")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1000544910]
+[node name="FirstPerson" type="Camera3D" parent="." unique_id=1000544910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67170763, 0)
+
+[node name="Head" type="Node3D" parent="." unique_id=25398004]
+
+[node name="ThirdPerson" type="Camera3D" parent="Head" unique_id=173651692]
+transform = Transform3D(1, 0, 0, 0, 0.95423764, 0.29904938, 0, -0.29904938, 0.95423764, 0, 1.0736039, 1.6432395)
+fov = 118.9
