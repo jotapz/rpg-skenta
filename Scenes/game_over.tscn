@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ct3c6rs7wjvgj"]
+
+[ext_resource type="Script" uid="uid://bpr6a6h5gxwvb" path="res://game_over.gd" id="1_ojehl"]
+
+[node name="gameOver" type="Control" unique_id=2016143624]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ojehl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1748245453]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 642.0
+color = Color(0.33075488, 0.16147295, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1255605692]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 267.0
+offset_right = 617.0
+offset_bottom = 290.0
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="." unique_id=411680219]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 323.0
+offset_right = 651.0
+offset_bottom = 354.0
+text = "Jogar novamente"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
