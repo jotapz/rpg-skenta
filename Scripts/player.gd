@@ -8,6 +8,8 @@ const JUMP_VELOCITY = 4.5
 var gold = 0
 var hp = 50
 var maxHp = 50
+var damage = 10
+var target = []
 
 var onCooldown = false
 var sensivity = 0.003
@@ -16,6 +18,9 @@ var sensivity = 0.003
 @onready var camera = $FirstPerson
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
+
+func player():
+	pass
 
 func _ready():
 	hpBar.max_value = 50
@@ -27,6 +32,10 @@ func attack():
 		animationPlayer.play("SwordSwing")
 		onCooldown = true
 		cooldown.start()
+
+func deal_damage():
+	for enemies in target:
+		enemies.hp -= damage
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -83,3 +92,14 @@ func _physics_process(delta: float) -> void:
 
 func _on_attack_cooldown_timeout() -> void:
 	onCooldown = false
+
+
+func _on_attack_zone_body_entered(body):
+	if body.has_method("enemy"):
+		target.append(body)
+
+
+func _on_attack_zone_body_exited(body):
+	if body.has_method("enemy"):
+		target.erase(body)
+	

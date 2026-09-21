@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bfivsahd60cyo" path="res://Objects/trees.tscn" id="8_k7acu"]
 [ext_resource type="PackedScene" uid="uid://clr4uu28g6c31" path="res://Objects/enemy.tscn" id="10_0fj1v"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s2hb0"]
-size = Vector3(50, 1, 50)
+[sub_resource type="NavigationMesh" id="NavigationMesh_43m2q"]
+vertices = PackedVector3Array(11, 0.49428594, -9.75, 10.75, 0.74428594, -11.5, 7.75, 0.49428594, -10.5, 7, 0.49428594, -10.5, 24.5, 0.49428594, 24.5, 24.5, 0.49428594, -11, 14.75, 0.49428594, -11, 14.25, 0.49428594, -10.25, 5.25, 0.49428594, -16, 12, 0.49428594, -18, 12, 0.49428594, -24.5, -24.5, 0.49428594, -24.5, 6.25, 0.49428594, -11.25, -24.5, 0.49428594, 24.5, 13, 0.49428594, -17.5, 13.25, 0.49428594, -15, 24.5, 0.49428594, -24.5, 11.75, 0.49428594, -13.5, 12.25, 0.49428594, -11.75, 12.75, 0.49428594, -11.75, 11.5, 0.49428594, -16, 7.25, 0.49428594, -14.75, 7.75, 0.49428594, -12.5, 13.25, 3.994286, -11.5, 13, 5.494286, -13, 12.75, 4.494286, -12, 12, 4.744286, -12, 12, 5.244286, -12.75, 11.5, 5.244286, -12.5, 11.75, 3.994286, -11)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(5, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(7, 5, 0), PackedInt32Array(0, 5, 4), PackedInt32Array(12, 3, 11), PackedInt32Array(11, 3, 13), PackedInt32Array(13, 3, 4), PackedInt32Array(12, 11, 8), PackedInt32Array(6, 15, 14), PackedInt32Array(14, 9, 10), PackedInt32Array(14, 10, 6), PackedInt32Array(6, 10, 5), PackedInt32Array(5, 10, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(22, 21, 17), PackedInt32Array(17, 21, 20), PackedInt32Array(25, 24, 23), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 29)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ag3re"]
 albedo_color = Color(8.964352e-07, 0.2985116, 0.035168946, 1)
@@ -20,6 +21,9 @@ albedo_color = Color(8.964352e-07, 0.2985116, 0.035168946, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_ntxrx"]
 size = Vector2(50, 50)
 orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2hb0"]
+size = Vector3(50, 1, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0qyq"]
 albedo_color = Color(0.15399304, 0.38265, 0.17699224, 1)
@@ -46,21 +50,24 @@ volumetric_fog_density = 0.015
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=201773213]
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Floor" unique_id=325398633]
+navigation_mesh = SubResource("NavigationMesh_43m2q")
+
+[node name="tavern" parent="Floor/NavigationRegion3D" unique_id=2139391647 instance=ExtResource("2_5a7ea")]
+transform = Transform3D(0.96077955, 0, 0.27731338, 0, 1, 0, -0.27731338, 0, 0.96077955, 8.663443, 0.0028690249, -13.976217)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/NavigationRegion3D" unique_id=1224208753]
+material_override = SubResource("StandardMaterial3D_ag3re")
+mesh = SubResource("QuadMesh_ntxrx")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=986018732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_s2hb0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1224208753]
-material_override = SubResource("StandardMaterial3D_ag3re")
-mesh = SubResource("QuadMesh_ntxrx")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Floor" unique_id=1053709558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15022385, 0)
 material_override = SubResource("StandardMaterial3D_y0qyq")
 multimesh = SubResource("MultiMesh_5v1tr")
-
-[node name="tavern" parent="Floor" unique_id=2139391647 instance=ExtResource("2_5a7ea")]
-transform = Transform3D(0.96077955, 0, 0.27731338, 0, 1, 0, -0.27731338, 0, 0.96077955, 8.663443, 0.0028690249, -13.976217)
 
 [node name="Player" parent="." unique_id=1197057526 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96358204, 0)
@@ -1185,3 +1192,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3980927, 0, -2.4855967)
 environment = SubResource("Environment_43m2q")
 
 [node name="Enemy" parent="." unique_id=330662537 instance=ExtResource("10_0fj1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.032543)

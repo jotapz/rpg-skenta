@@ -67,12 +67,28 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.45129025, 0, 0), Vector3(0, 0, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deal_damage"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ad8t"]
 _data = {
 &"RESET": SubResource("Animation_3y5cq"),
 &"SwordSwing": SubResource("Animation_2i4gt")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ad8t"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1197057526]
 script = ExtResource("1_y0qk3")
@@ -90,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67170763, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67170763, 0)
 
 [node name="Sword" parent="FirstPerson/SwordPoint" unique_id=1363493592 instance=ExtResource("2_3y5cq")]
-transform = Transform3D(0.57073754, 0.003795766, 0.8211238, 0.006650486, -0.9999779, 0, 0.8211056, 0.0054608723, -0.5707502, 0.857733, 0.642135, -0.9874959)
+transform = Transform3D(0.11414751, 0.0007591605, 0.16422476, 0.00133011, -0.19999558, -4.65651e-11, 0.16422112, 0.0010921849, -0.11415004, 0.1340496, 0.6597581, -0.14569789)
 
 [node name="Head" type="Node3D" parent="." unique_id=25398004]
 
@@ -121,4 +137,12 @@ offset_bottom = 630.0
 theme_type_variation = &"HeaderMedium"
 text = "0"
 
+[node name="attackZone" type="Area3D" parent="." unique_id=75815531]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attackZone" unique_id=975448404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15217572, 0.37239194, -0.73110956)
+shape = SubResource("BoxShape3D_0ad8t")
+
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="attackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="attackZone" to="." method="_on_attack_zone_body_exited"]
