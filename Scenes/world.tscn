@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://beyqqnsqe2otj" path="res://Model/CliffProps/cliffProps4.glb" id="5_5v1tr"]
 [ext_resource type="PackedScene" uid="uid://s5dtydndfq3q" path="res://Model/CliffProps/cliffProps5.glb" id="6_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://bfivsahd60cyo" path="res://Objects/trees.tscn" id="8_k7acu"]
+[ext_resource type="PackedScene" uid="uid://clr4uu28g6c31" path="res://Objects/enemy.tscn" id="10_0fj1v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2hb0"]
 size = Vector3(50, 1, 50)
@@ -1182,3 +1183,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3980927, 0, -2.4855967)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=490878148]
 environment = SubResource("Environment_43m2q")
+
+[node name="Enemy" parent="." unique_id=330662537 instance=ExtResource("10_0fj1v")]
