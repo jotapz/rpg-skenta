@@ -14,8 +14,7 @@ var value = 15
 @export var navAgent : NavigationAgent3D
 @export var animationPlayer : AnimationPlayer
 
-func enemy():
-	pass
+
 
 func _process(delta):
 	if hp <= 0:
@@ -56,7 +55,7 @@ func attack():
 	target.camera_shake()
 
 func _on_chase_area_body_entered(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		target = body
 		state = States.chase
 	
@@ -65,16 +64,16 @@ func give_loot():
 	target.gold += value
 
 func _on_chase_area_body_exited(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		target = null
 		state = States.idle
 
 
 func _on_attack_area_body_entered(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		state = States.attack
 
 
 func _on_attack_area_body_exited(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		state = States.idle

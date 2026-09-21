@@ -90,7 +90,7 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ad8t"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1197057526]
+[node name="Player" type="CharacterBody3D" unique_id=1197057526 groups=["Player"]]
 script = ExtResource("1_y0qk3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2075456639]

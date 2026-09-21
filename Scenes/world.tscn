@@ -1193,3 +1193,9 @@ environment = SubResource("Environment_43m2q")
 
 [node name="Enemy" parent="." unique_id=330662537 instance=ExtResource("10_0fj1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.032543)
+
+[node name="Enemy2" parent="." unique_id=1112293697 instance=ExtResource("10_0fj1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.59607, 0.1258465, 20.13537)
+
+[node name="Enemy3" parent="." unique_id=1476635357 instance=ExtResource("10_0fj1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.099464, 0.12584698, -2.0682611)

@@ -894,7 +894,7 @@ radius = 4.5493164
 height = 0.99560547
 radius = 0.92285156
 
-[node name="Enemy" type="CharacterBody3D" unique_id=330662537 node_paths=PackedStringArray("navAgent", "animationPlayer")]
+[node name="Enemy" type="CharacterBody3D" unique_id=330662537 node_paths=PackedStringArray("navAgent", "animationPlayer") groups=["Enemy"]]
 script = ExtResource("1_yfe2k")
 navAgent = NodePath("NavigationAgent3D")
 animationPlayer = NodePath("GobelinExport/AnimationPlayer")

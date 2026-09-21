@@ -14,6 +14,11 @@ var value = 15
 
 var onCooldown = false
 var sensivity = 0.003
+
+var regen_rate = 2.0
+var regen_timer = 0.0
+
+
 @onready var goldLabel = $HUD/GoldLabel
 @onready var hpBar = $HUD/HpBar
 @onready var camera = $FirstPerson
@@ -21,8 +26,7 @@ var sensivity = 0.003
 @onready var cooldown = $AttackCooldown
 @onready var damageFlash = $HUD/damageFlash
 
-func player():
-	pass
+
 
 func _ready():
 	hpBar.max_value = 50
@@ -75,6 +79,13 @@ func _process(delta):
 	update_HUD()
 	attack()
 	_switch_view()
+	
+	if hp < maxHp:
+		regen_timer += delta
+		if regen_timer >= regen_rate:
+			hp += 1
+			regen_timer = 0.0
+	
 	if hp <= 0:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	if Input.is_action_just_pressed("escape"):
@@ -111,11 +122,11 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func _on_attack_zone_body_entered(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("Enemy"):
 		target.append(body)
 
 
 func _on_attack_zone_body_exited(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("Enemy"):
 		target.erase(body)
 	
