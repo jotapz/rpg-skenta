@@ -895,6 +895,8 @@ height = 0.99560547
 radius = 0.92285156
 
 [node name="Enemy" type="CharacterBody3D" unique_id=330662537 node_paths=PackedStringArray("navAgent", "animationPlayer") groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_yfe2k")
 navAgent = NodePath("NavigationAgent3D")
 animationPlayer = NodePath("GobelinExport/AnimationPlayer")
@@ -1120,12 +1122,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61512214, 0.076096654)
 shape = SubResource("CapsuleShape3D_pqkrj")
 
 [node name="chaseArea" type="Area3D" parent="." unique_id=1721074271]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chaseArea" unique_id=643282567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5487194, 0)
 shape = SubResource("CylinderShape3D_756aq")
 
 [node name="attackArea" type="Area3D" parent="." unique_id=1768343953]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attackArea" unique_id=19393490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50219727, 0)

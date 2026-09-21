@@ -151,6 +151,8 @@ offset_bottom = 630.0
 text = "Ouro:"
 
 [node name="attackZone" type="Area3D" parent="." unique_id=75815531]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attackZone" unique_id=975448404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15217572, 0.37239194, -0.73110956)

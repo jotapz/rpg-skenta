@@ -49,6 +49,8 @@ volumetric_fog_density = 0.015
 [node name="World" type="Node3D" unique_id=4237963]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=201773213]
+collision_layer = 4
+collision_mask = 0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Floor" unique_id=325398633]
 navigation_mesh = SubResource("NavigationMesh_43m2q")
@@ -71,12 +73,15 @@ multimesh = SubResource("MultiMesh_5v1tr")
 
 [node name="Player" parent="." unique_id=1197057526 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96358204, 0)
+collision_mask = 14
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1238435702]
 transform = Transform3D(-0.09359564, 0.99472016, 0.04209177, -0.15206149, -0.056063604, 0.98677975, 0.98392946, 0.08595774, 0.15650594, 0.13903809, 12.129217, 0.38961744)
 shadow_enabled = true
 
 [node name="Cliff" type="StaticBody3D" parent="." unique_id=854255031]
+collision_layer = 8
+collision_mask = 0
 
 [node name="cliffProps1" parent="Cliff" unique_id=591814626 instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.21326907, 0.11876624, 0.9697478, 0.039545678, 0.9928196, -0.11289494, -0.9761932, 0.014272295, -0.21643443, -26.13, 2.8610363, 10.812259)
