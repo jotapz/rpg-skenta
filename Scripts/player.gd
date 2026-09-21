@@ -10,6 +10,7 @@ var hp = 50
 var maxHp = 50
 var damage = 10
 var target = []
+var value = 15
 
 var onCooldown = false
 var sensivity = 0.003
@@ -18,6 +19,7 @@ var sensivity = 0.003
 @onready var camera = $FirstPerson
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
+@onready var damageFlash = $HUD/damageFlash
 
 func player():
 	pass
@@ -32,6 +34,18 @@ func attack():
 		animationPlayer.play("SwordSwing")
 		onCooldown = true
 		cooldown.start()
+
+func flash_damage():
+	damageFlash.color = Color(1, 0, 0, 0.4)
+	await get_tree().create_timer(0.1).timeout
+	damageFlash.color = Color(1, 0, 0, 0)
+
+func camera_shake():
+	var origin = camera.position
+	for i in 10:
+		camera.position = origin + Vector3(randf_range(-0.05, 0.05), randf_range(-0.05, 0.05), 0)
+		await get_tree().create_timer(0.02).timeout
+	camera.position = origin
 
 func deal_damage():
 	for enemies in target:

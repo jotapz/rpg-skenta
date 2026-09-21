@@ -9,6 +9,7 @@ var accel = 10
 var damage = 10
 var gravity = 9.8
 var target = null
+var value = 15
 
 @export var navAgent : NavigationAgent3D
 @export var animationPlayer : AnimationPlayer
@@ -51,6 +52,8 @@ func _physics_process(delta):
 
 func attack():
 	target.hp -= damage
+	target.flash_damage()
+	target.camera_shake()
 
 func _on_chase_area_body_entered(body):
 	if body.has_method("player"):
@@ -58,6 +61,8 @@ func _on_chase_area_body_entered(body):
 		state = States.chase
 	
 
+func give_loot():
+	target.gold += value
 
 func _on_chase_area_body_exited(body):
 	if body.has_method("player"):
